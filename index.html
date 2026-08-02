@@ -3,493 +3,594 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>زانیاری کاره‌با - محمد مستەفا</title>
+    <title>زانیاری کارەبا - محمد مستەفا</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        html { scroll-behavior: smooth; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-
-        :root {
-            --primary: #667eea;
-            --secondary: #764ba2;
-            --bg-color: #f7fafc;
-            --text-color: #2d3748;
-            --card-bg: rgba(255, 255, 255, 0.95);
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --btn-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        body.dark-mode {
-            --bg-color: #1a202c;
-            --text-color: #e2e8f0;
-            --card-bg: rgba(45, 55, 72, 0.95);
-            --btn-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: var(--bg-color);
-            color: var(--text-color);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            transition: background 0.3s;
+            padding: 20px;
         }
 
-        header {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 30px 20px;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        /* Header */
+        .header {
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
             position: relative;
-            z-index: 10;
         }
 
         .theme-toggle {
-            position: absolute; top: 20px; left: 20px;
-            background: none; border: none; font-size: 1.5em;
-            cursor: pointer; color: var(--text-color);
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #667eea;
         }
 
-        h1 {
-            font-size: 2.2em;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
             margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-        .contact-btns {
-            display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 15px;
+        /* Contact Buttons */
+        .contact-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+            align-items: center;
         }
 
         .btn-contact {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 10px 25px; border-radius: 50px;
-            text-decoration: none; font-weight: bold; color: white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: transform 0.2s;
-        }
-        .btn-wa { background: #25D366; }
-        .btn-call { background: #3182ce; }
-        .btn-contact:hover { transform: translateY(-3px); }
-
-        .search-container { max-width: 600px; margin: 25px auto; position: relative; }
-        .search-input {
-            width: 100%; padding: 15px 50px 15px 20px;
-            border-radius: 50px; border: 2px solid #e2e8f0;
-            background: var(--card-bg); color: var(--text-color);
-            outline: none; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        .search-icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
-
-        .nav-container {
-            display: flex; justify-content: center; flex-wrap: wrap;
-            gap: 15px; padding: 20px; max-width: 1200px; margin: 0 auto;
-        }
-
-        .nav-btn {
-            background: var(--card-bg);
-            color: var(--text-color);
-            border: none;
-            padding: 15px 30px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: 700;
-            box-shadow: var(--btn-shadow);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
-            min-width: 140px;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            min-width: 250px;
+        }
+
+        .btn-contact:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .btn-call {
+            background: #3182ce;
+            color: white;
+        }
+
+        /* Search */
+        .search-box {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 1em;
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #718096;
+        }
+
+        /* Navigation */
+        .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
             justify-content: center;
         }
 
-        .nav-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--gradient);
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.3s ease;
-            border-radius: 15px;
-        }
-
-        .nav-btn:hover {
-            transform: translateY(-5px);
+        .nav-btn {
+            padding: 12px 25px;
+            background: #667eea;
             color: white;
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
         }
 
-        .nav-btn:hover::before { opacity: 1; }
-
-        .nav-btn.active {
-            background: var(--gradient);
-            color: white;
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        .nav-btn:hover, .nav-btn.active {
+            background: #764ba2;
+            transform: translateY(-2px);
         }
 
-        .nav-btn i { font-size: 1.1em; }
-
-        .section-container {
-            max-width: 900px; margin: 20px auto; padding: 0 15px;
-            display: none; animation: fadeIn 0.5s ease;
+        /* Sections */
+        .section {
+            display: none;
+            animation: fadeIn 0.5s;
         }
-        .section-container.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
 
         .content-card {
-            background: var(--card-bg); padding: 30px;
-            border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-bottom: 30px; position: relative;
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-right: 4px solid #667eea;
         }
 
-        .section-header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 15px;
+        .content-card h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.3em;
         }
-        .section-title { font-size: 1.8em; color: var(--primary); }
-        
-        .share-btn {
-            background: transparent; color: var(--primary);
-            border: 2px solid var(--primary);
-            padding: 8px 15px; border-radius: 20px;
-            cursor: pointer; font-weight: bold;
-            transition: 0.3s; display: flex; align-items: center; gap: 5px;
+
+        .content-card p, .content-card li {
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 10px;
         }
-        .share-btn:hover { background: var(--primary); color: white; }
+
+        .content-card ul {
+            list-style-position: inside;
+        }
 
         .content-img {
-            max-width: 100%; height: auto; border-radius: 15px;
-            margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            margin: 15px 0;
         }
-        .content-text { line-height: 1.8; white-space: pre-wrap; font-size: 1.1em; }
 
+        /* Gallery */
         .gallery-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px; margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
         }
+
         .gallery-item {
-            border-radius: 10px; overflow: hidden; aspect-ratio: 1;
-            cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            aspect-ratio: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
         }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
-        .gallery-item:hover img { transform: scale(1.1); }
 
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* FAQ */
         .faq-item {
-            background: var(--card-bg); margin-bottom: 10px;
-            border-radius: 10px; overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
         }
+
         .faq-question {
-            padding: 15px; cursor: pointer; font-weight: bold;
-            display: flex; justify-content: space-between; align-items: center;
+            font-weight: bold;
+            color: #2d3748;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+
         .faq-answer {
-            padding: 0 15px; max-height: 0; overflow: hidden;
-            transition: max-height 0.3s ease; background: rgba(0,0,0,0.02);
-            color: #555;
+            display: none;
+            margin-top: 10px;
+            color: #4a5568;
+            padding-top: 10px;
+            border-top: 1px solid #e2e8f0;
         }
-        .faq-item.open .faq-answer { max-height: 300px; padding: 15px; }
 
-        .service-form {
-            background: #f8f9fa; padding: 25px;
-            border-radius: 15px; border: 2px solid #e2e8f0;
+        .faq-item.active .faq-answer {
+            display: block;
         }
-        .service-form input, .service-form textarea, .service-form select {
-            width: 100%; padding: 12px; margin-bottom: 15px;
-            border: 1px solid #ddd; border-radius: 8px;
-            background: white; color: var(--text-color); font-size: 1em;
+
+        /* Form */
+        .form-group {
+            margin-bottom: 20px;
         }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
         .submit-btn {
-            width: 100%; padding: 15px; background: #25D366;
-            color: white; border: none; border-radius: 8px;
-            font-size: 1.1em; cursor: pointer; font-weight: bold;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            transition: 0.3s;
-        }
-        .submit-btn:hover { background: #1ebc57; transform: translateY(-2px); }
-
-        #backToTop {
-            position: fixed; bottom: 30px; right: 30px;
-            background: var(--gradient); color: white;
-            width: 50px; height: 50px; border-radius: 50%;
-            display: none; align-items: center; justify-content: center;
-            cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            z-index: 100; font-size: 1.2em;
+            width: 100%;
+            padding: 15px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
         }
 
-        footer { text-align: center; padding: 30px; opacity: 0.7; font-size: 0.9em; }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+            color: #718096;
+        }
 
-        @media (max-width: 768px) {
-            .nav-btn { min-width: 45%; padding: 12px; font-size: 0.9em; }
-            .section-header { flex-direction: column; gap: 10px; align-items: flex-start; }
-            .share-btn { width: 100%; justify-content: center; }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 2em; }
+            .btn-contact { min-width: 100%; }
+            .nav-btn { width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <header id="topHeader">
-        <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
-        <h1><i class="fas fa-bolt"></i> زانیاری کاره‌با</h1>
-        <div class="owner-info" id="ownerDisplay" style="margin-bottom: 10px; opacity: 0.8;"></div>
-        
-        <div class="contact-btns">
-            <a href="https://wa.me/9647501757120" class="btn-contact btn-wa" target="_blank">
-                <i class="fab fa-whatsapp"></i> واتسئەپ: 0750 175 7120
-            </a>
-            <a href="tel:+9647501757120" class="btn-contact btn-call">
-                <i class="fas fa-phone"></i> پەیوەندی
-            </a>
-        </div>
-
-        <div class="search-container">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" id="searchInput" class="search-input" placeholder="گەڕان..." onkeyup="searchContent()">
-        </div>
-    </header>
-
-    <nav class="nav-container" id="navContainer"></nav>
-    <div id="mainContentArea"></div>
-
-    <footer>
-        <p>&copy; 2026 Designed for Mohammed Mustafa</p>
-    </footer>
-
-    <div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-        <i class="fas fa-arrow-up"></i>
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <i class="fas fa-moon theme-toggle" onclick="toggleTheme()"></i>
+        <h1>
+            <i class="fas fa-bolt"></i>
+            زانیاری کارەبا
+        </h1>
     </div>
 
-    <script>
-        const defaultData = {
-            owner: "محمه‌د مسته‌فا",
-            phone: "07501757120", // ژمارەی نوێ
-            aboutText: "ئەندازیاری کارەبا و پسپۆڕ لە بواری PLC و درایڤ.",
-            aboutImg: "",
-            sections: [
-                { id: 0, title: "تەئسیسات", text: "زانیاری دەربارەی تەئسیسات...", img: "" },
-                { id: 1, title: "کلاسیک کۆنتڕۆڵ", text: "زانیاری دەربارەی کلاسیک...", img: "" },
-                { id: 2, title: "ماتۆر", text: "جۆرەکانی ماتۆر...", img: "" },
-                { id: 3, title: "PLC", text: "سیستەمی PLC...", img: "" },
-                { id: 4, title: "AC Drive", text: "درایڤەکان...", img: "" },
-                { id: 5, title: "کێبڵ", text: "جۆرەکانی کێبڵ...", img: "" }
-            ],
-            gallery: [],
-            faq: [
-                { q: "نرخی تەئسیسات چەندە؟", a: "نرخ بەپێی شوێن و قەبارەی کار دیاری دەکرێت." },
-                { q: "چۆن داواکاری بکەم؟", a: "دەتوانیت لە بەشی خزمەتگوزاری فۆرمەکە پڕ بکەیتەوە." }
-            ],
-            messages: []
-        };
+    <!-- Contact Buttons -->
+    <div class="contact-buttons">
+        <a href="https://wa.me/9647501757120" class="btn-contact btn-whatsapp" target="_blank">
+            <span>واتسئەپ: 0750 175 7120</span>
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+9647501757120" class="btn-contact btn-call">
+            <span>پەیوەندی</span>
+            <i class="fas fa-phone"></i>
+        </a>
+    </div>
 
-        let appData = JSON.parse(localStorage.getItem('electricalAppData')) || defaultData;
+    <!-- Search -->
+    <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="گەڕان..." id="searchInput" onkeyup="searchContent()">
+    </div>
 
-        function init() {
-            renderNav();
-            renderSections();
-            updateOwnerInfo();
-            
-            window.onscroll = function() {
-                const btn = document.getElementById('backToTop');
-                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                    btn.style.display = "flex";
-                } else {
-                    btn.style.display = "none";
-                }
-            };
-        }
+    <!-- Navigation -->
+    <div class="nav-menu">
+        <button class="nav-btn active" onclick="showSection('tasizat')">تەئسیسات</button>
+        <button class="nav-btn" onclick="showSection('classic')">کلاسیک کۆنتڕۆڵ</button>
+        <button class="nav-btn" onclick="showSection('motor')">ماتۆر</button>
+        <button class="nav-btn" onclick="showSection('plc')">PLC</button>
+        <button class="nav-btn" onclick="showSection('acdrive')">AC Drive</button>
+        <button class="nav-btn" onclick="showSection('cable')">کێبڵ</button>
+        <button class="nav-btn" onclick="showSection('about')">دەربارەی من</button>
+        <button class="nav-btn" onclick="showSection('gallery')">گەلەری</button>
+        <button class="nav-btn" onclick="showSection('faq')">پرسیارەکان</button>
+        <button class="nav-btn" onclick="showSection('request')">داواکاری</button>
+    </div>
 
-        function updateOwnerInfo() {
-            document.getElementById('ownerDisplay').innerText = `خاوه‌نی مالپه‌ر: ${appData.owner}`;
-        }
+    <!-- Sections Content -->
+    
+    <!-- Tasizat Section -->
+    <div id="tasizat" class="section active">
+        <h2 class="section-title">تەئسیسات</h2>
+        <div class="content-card">
+            <h3>تەئسیساتی کارەبا</h3>
+            <p>ئەنجامدانی هەموو جۆرە تەئسیساتێکی کارەبا بۆ خانووەکان، کۆمپانیاکان و کارگەکان.</p>
+            <ul>
+                <li>تەئسیساتی ناوخۆیی و دەرەکی</li>
+                <li>دامەزراندنی وایەر و کێبڵ</li>
+                <li>نەخشەسازی و پلاندانان</li>
+                <li>تاقیکردنەوە و پاراستن</li>
+            </ul>
+        </div>
+    </div>
 
-        function renderNav() {
-            const container = document.getElementById('navContainer');
-            container.innerHTML = '';
-            
-            appData.sections.forEach((item, index) => {
-                createBtn(item.title, index, container, 'fas fa-circle-dot');
-            });
+    <!-- Classic Control Section -->
+    <div id="classic" class="section">
+        <h2 class="section-title">کلاسیک کۆنتڕۆڵ</h2>
+        <div class="content-card">
+            <h3>سیستەمی کلاسیک کۆنتڕۆڵ</h3>
+            <p>دامەزراندن و چاککردنەوەی سیستمەکانی کۆنتڕۆڵی کلاسیکی بۆ ماتۆر و ئامێرەکان.</p>
+            <ul>
+                <li>کۆنتڕۆڵی ڕاستەوخۆ</li>
+                <li>سیستەمی Star-Delta</li>
+                <li>پاراستنی ماتۆرەکان</li>
+            </ul>
+        </div>
+    </div>
 
-            createBtn('دەربارەی من', 'about', container, 'fas fa-user');
-            createBtn('گەلەری کارەکان', 'gallery', container, 'fas fa-images');
-            createBtn('پرسیارەکان', 'faq', container, 'fas fa-question-circle');
-            createBtn('داواکاری', 'request', container, 'fas fa-file-signature');
-        }
+    <!-- Motor Section -->
+    <div id="motor" class="section">
+        <h2 class="section-title">ماتۆر</h2>
+        <div class="content-card">
+            <h3>ماتۆرەکانی کارەبا</h3>
+            <p>چاککردنەوە، دامەزراندن و ڕاگرتنی جۆرەکانی ماتۆری کارەبا.</p>
+            <ul>
+                <li>ماتۆری AC و DC</li>
+                <li>ماتۆری سێ قۆناغ و تاک قۆناغ</li>
+                <li>چاککردنەوەی گەنەڕاتۆرەکان</li>
+            </ul>
+        </div>
+    </div>
 
-        function createBtn(title, id, container, iconClass) {
-            const btn = document.createElement('button');
-            btn.className = 'nav-btn';
-            btn.innerHTML = `<i class="${iconClass}"></i> ${title}`;
-            btn.onclick = () => showSection(id);
-            container.appendChild(btn);
-        }
+    <!-- PLC Section -->
+    <div id="plc" class="section">
+        <h2 class="section-title">PLC</h2>
+        <div class="content-card">
+            <h3>بەرنامەسازی PLC</h3>
+            <p>بەرنامەسازی و دامەزراندنی سیستەمەکانی PLC بۆ کۆنتڕۆڵی ئۆتۆماتیکی.</p>
+            <ul>
+                <li>بەرنامەسازی بە Ladder Logic</li>
+                <li>دامەزراندنی Siemens, Allen Bradley</li>
+                <li>پەیوەندی بە HMI و SCADA</li>
+            </ul>
+        </div>
+    </div>
 
-        function renderSections() {
-            const mainArea = document.getElementById('mainContentArea');
-            mainArea.innerHTML = '';
+    <!-- AC Drive Section -->
+    <div id="acdrive" class="section">
+        <h2 class="section-title">AC Drive</h2>
+        <div class="content-card">
+            <h3>درایڤەکانی AC</h3>
+            <p>دامەزراندن و ڕێکخستنی درایڤەکان بۆ کۆنتڕۆڵی خێرایی ماتۆرەکان.</p>
+            <ul>
+                <li>ڕێکخستنی پارامیتەرەکان</li>
+                <li>چارەسەرکردنی کێشەکان</li>
+                <li>کۆنتڕۆڵی خێرایی و تۆڕک</li>
+            </ul>
+        </div>
+    </div>
 
-            appData.sections.forEach((item, index) => {
-                const div = document.createElement('div');
-                div.className = 'section-container';
-                div.id = `section-${index}`;
-                div.innerHTML = `
-                    <div class="content-card">
-                        <div class="section-header">
-                            <h2 class="section-title">${item.title}</h2>
-                            <button class="share-btn" onclick="shareSection('${item.title}')">
-                                <i class="fas fa-share-alt"></i> هاوبەشکردن
-                            </button>
-                        </div>
-                        ${item.img ? `<img src="${item.img}" class="content-img">` : ''}
-                        <div class="content-text">${item.text || 'هیچ زانیارییەک نییە.'}</div>
-                    </div>
-                `;
-                mainArea.appendChild(div);
-            });
+    <!-- Cable Section -->
+    <div id="cable" class="section">
+        <h2 class="section-title">کێبڵ</h2>
+        <div class="content-card">
+            <h3>کێبڵەکانی کارەبا</h3>
+            <p>هەموو جۆرە کێبڵێکی کارەبا بە بەرزترین کوالیتی.</p>
+            <ul>
+                <li>کێبڵی تەئسیساتی</li>
+                <li>کێبڵی کۆنتڕۆڵ</li>
+                <li>کێبڵی دەریایی و ژێر زەوی</li>
+            </ul>
+        </div>
+    </div>
 
-            const aboutDiv = document.createElement('div');
-            aboutDiv.className = 'section-container';
-            aboutDiv.id = 'section-about';
-            aboutDiv.innerHTML = `
-                <div class="content-card" style="text-align: center;">
-                    <h2 class="section-title">دەربارەی من</h2>
-                    ${appData.aboutImg ? `<img src="${appData.aboutImg}" class="content-img" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">` : ''}
-                    <p class="content-text">${appData.aboutText}</p>
+    <!-- About Section -->
+    <div id="about" class="section">
+        <h2 class="section-title">دەربارەی من</h2>
+        <div class="content-card">
+            <h3>محمد مستەفا</h3>
+            <p>ئەندازیاری کارەبا و پسپۆڕ لە بواری PLC و درایڤ. زیاتر لە ١٠ ساڵ ئەزموون لە بواری تەئسیسات و کۆنتڕۆڵی کارەبا.</p>
+            <p><strong>تایبەتمەندییەکان:</strong></p>
+            <ul>
+                <li>ئەندازیاری کارەبا</li>
+                <li>پسپۆڕی PLC و SCADA</li>
+                <li>چارەسەرکردنی کێشە ئاڵۆزەکان</li>
+                <li>ڕاهێنان و مشاورە</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div id="gallery" class="section">
+        <h2 class="section-title">گەلەری کارەکان</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/300" alt="کار 1">
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/300" alt="کار 2">
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/300" alt="کار 3">
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div id="faq" class="section">
+        <h2 class="section-title">پرسیار و وەڵامەکان</h2>
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">
+                نرخی تەئسیسات چەندە؟
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                نرخ بەپێی قەبارەی کار، شوێن و جۆری تەئسیسات دیاری دەکرێت. تکایە پەیوەندیمان پێوە بکەن بۆ زانیاری زیاتر.
+            </div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">
+                چۆن داواکاری بکەم؟
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                دەتوانیت لە ڕێگەی واتسئەپ، پەیوەندی یان فۆرمی داواکاری پەیوەندیمان پێوە بکەیت.
+            </div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">
+                ئایا گارانتی هەیە؟
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                بەڵێ، هەموو کارەکانمان گارانتی هەیە بۆ ماوەی  مانگ بۆ ساڵێک بەپێی جۆری کار.
+            </div>
+        </div>
+    </div>
+
+    <!-- Request Section -->
+    <div id="request" class="section">
+        <h2 class="section-title">داواکاری خزمەتگوزاری</h2>
+        <div class="content-card">
+            <form onsubmit="sendRequest(event)">
+                <div class="form-group">
+                    <label>ناو:</label>
+                    <input type="text" id="reqName" required placeholder="ناوی تۆ">
                 </div>
-            `;
-            mainArea.appendChild(aboutDiv);
-
-            const galDiv = document.createElement('div');
-            galDiv.className = 'section-container';
-            galDiv.id = 'section-gallery';
-            let galHTML = '<div class="gallery-grid">';
-            if(appData.gallery.length > 0) {
-                appData.gallery.forEach(imgUrl => {
-                    galHTML += `<div class="gallery-item"><img src="${imgUrl}" onclick="window.open('${imgUrl}')"></div>`;
-                });
-            } else {
-                galHTML += '<p style="grid-column: 1/-1; text-align: center; padding: 20px;">هیچ وێنەیەک نییە.</p>';
-            }
-            galHTML += '</div>';
-            galDiv.innerHTML = `<div class="content-card"><h2 class="section-title">گەلەری کارەکان</h2>${galHTML}</div>`;
-            mainArea.appendChild(galDiv);
-
-            const faqDiv = document.createElement('div');
-            faqDiv.className = 'section-container';
-            faqDiv.id = 'section-faq';
-            let faqHTML = '';
-            appData.faq.forEach((item) => {
-                faqHTML += `
-                    <div class="faq-item" onclick="this.classList.toggle('open')">
-                        <div class="faq-question">${item.q} <i class="fas fa-chevron-down"></i></div>
-                        <div class="faq-answer">${item.a}</div>
-                    </div>
-                `;
-            });
-            faqDiv.innerHTML = `<div class="content-card"><h2 class="section-title">پرسیار و وەڵام</h2>${faqHTML}</div>`;
-            mainArea.appendChild(faqDiv);
-
-            const reqDiv = document.createElement('div');
-            reqDiv.className = 'section-container';
-            reqDiv.id = 'section-request';
-            reqDiv.innerHTML = `
-                <div class="content-card">
-                    <h2 class="section-title">داواکاری خزمەتگوزاری</h2>
-                    <p style="margin-bottom: 20px; color: #666;">فۆرمەکە پڕ بکە، ڕاستەوخۆ دەچێتە واتسئەپ</p>
-                    <form class="service-form" onsubmit="sendRequestToWhatsApp(event)">
-                        <input type="text" id="reqName" placeholder="ناوی تۆ" required>
-                        <input type="tel" id="reqPhone" placeholder="ژمارە مۆبایل" required>
-                        <select id="reqType">
-                            <option value="تەئسیسات">تەئسیسات</option>
-                            <option value="چاککردنەوە">چاککردنەوە</option>
-                            <option value="مشاورە">مشاورە</option>
-                            <option value="PLC">PLC</option>
-                            <option value="درایڤ">درایڤ</option>
-                        </select>
-                        <textarea id="reqDesc" rows="4" placeholder="وردەکاری کارەکە..."></textarea>
-                        <button type="submit" class="submit-btn">
-                            <i class="fab fa-whatsapp"></i> ناردن بۆ واتسئەپ
-                        </button>
-                    </form>
+                <div class="form-group">
+                    <label>ژمارە مۆبایل:</label>
+                    <input type="tel" id="reqPhone" required placeholder="0750 175 7120">
                 </div>
-            `;
-            mainArea.appendChild(reqDiv);
-        }
+                <div class="form-group">
+                    <label>جۆری کار:</label>
+                    <select id="reqType">
+                        <option>تەئسیسات</option>
+                        <option>چاککردنەوە</option>
+                        <option>PLC</option>
+                        <option>ماتۆر</option>
+                        <option>مشاورە</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>وردەکاری کار:</label>
+                    <textarea id="reqDesc" placeholder="تکایە وردەکاری کارەکە بنووسە..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fab fa-whatsapp"></i> ناردن بۆ واتسئەپ
+                </button>
+            </form>
+        </div>
+    </div>
 
-        function showSection(id) {
-            document.querySelectorAll('.section-container').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+    <!-- Footer -->
+    <footer>
+        <p>Designed for Mohammed Mustafa 2026 ©</p>
+    </footer>
+</div>
 
-            const target = document.getElementById(`section-${id}`);
-            if (target) {
-                target.classList.add('active');
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
+<script>
+// Theme Toggle
+function toggleTheme() {
+    document.body.classList.toggle('dark');
+    const icon = document.querySelector('.theme-toggle');
+    if (document.body.classList.contains('dark')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+    }
+}
 
-        function sendRequestToWhatsApp(e) {
-            e.preventDefault();
-            const name = document.getElementById('reqName').value;
-            const phone = document.getElementById('reqPhone').value;
-            const type = document.getElementById('reqType').value;
-            const desc = document.getElementById('reqDesc').value;
-            
-            const message = `*داواکاری نوێی خزمەتگوزاری*\n\n` +
-                           `👤 *ناو:* ${name}\n` +
-                           `📱 *ژمارە:* ${phone}\n` +
-                           `🔧 *جۆری کار:* ${type}\n` +
-                           `📝 *وردەکاری:* ${desc || 'نییە'}\n\n` +
-                           `------------------\n` +
-                           `لە ماڵپەڕی زانیاری کارەبا`;
-            
-            const newMessage = { name, phone, type, desc, time: new Date().toISOString() };
-            if (!appData.messages) appData.messages = [];
-            appData.messages.push(newMessage);
-            localStorage.setItem('electricalAppData', JSON.stringify(appData));
-            
-            const whatsappNumber = appData.phone.replace(/^0/, '964');
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-            
-            alert('✅ فۆرمەکە ئامادەیە! ئێستا واتسئەپ دەکرێتەوە...');
-            window.open(whatsappURL, '_blank');
-            e.target.reset();
-        }
+// Show Section
+function showSection(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    
+    // Show selected section
+    document.getElementById(sectionId).classList.add('active');
+    event.target.classList.add('active');
+}
 
-        function shareSection(title) {
-            if (navigator.share) {
-                navigator.share({ title: title, text: 'سەردانی ئەم بەشە بکە', url: window.location.href });
-            } else {
-                alert("لینک کۆپی کرا!");
-            }
-        }
+// Send Request to WhatsApp
+function sendRequest(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('reqName').value;
+    const phone = document.getElementById('reqPhone').value;
+    const type = document.getElementById('reqType').value;
+    const desc = document.getElementById('reqDesc').value;
+    
+    const message = `*داواکاری نوێ*\n\n` +
+                   `👤 ناو: ${name}\n` +
+                   `📱 ژمارە: ${phone}\n` +
+                   `🔧 جۆری کار: ${type}\n` +
+                   `📝 وردەکاری: ${desc || 'نییە'}`;
+    
+    const url = `https://wa.me/9647501757120?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+}
 
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-            const icon = document.querySelector('.theme-toggle i');
-            if(document.body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
-        }
+// Search
+function searchContent() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    // Simple search - you can enhance this
+    if (query.length > 2) {
+        alert('لە گەڕاندایە... تکایە لە بەشەکاندا بگەڕێ');
+    }
+}
+</script>
 
-        function searchContent() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            if(query.length > 2) {
-                alert("تکایە لە بەشەکاندا بگەڕێ یان دوگمەکان بەکاربهێنە.");
-            }
-        }
-
-        init();
-    </script>
 </body>
 </html>
