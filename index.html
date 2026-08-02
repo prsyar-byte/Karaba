@@ -125,7 +125,6 @@
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
         }
 
-        /* Request Button Special Style */
         .nav-btn.request-btn {
             background: var(--gradient-request);
             color: white;
@@ -198,7 +197,6 @@
             border-right: 4px solid var(--primary);
         }
 
-        /* Contact Form Styles */
         .contact-form-container {
             max-width: 900px;
             margin: 40px auto;
@@ -257,6 +255,54 @@
             min-height: 120px;
         }
 
+        /* GPS Status */
+        .gps-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+
+        .gps-status.loading {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fcd34d;
+        }
+
+        .gps-status.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #6ee7b7;
+        }
+
+        .gps-status.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        .gps-status i {
+            font-size: 1.2em;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(146, 64, 14, 0.3);
+            border-radius: 50%;
+            border-top-color: #92400e;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         .submit-btn {
             width: 100%;
             background: var(--gradient-request);
@@ -278,6 +324,11 @@
         .submit-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 30px rgba(245, 87, 108, 0.6);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
         }
 
         footer {
@@ -346,11 +397,17 @@
         </div>
     </main>
 
-    <!-- Contact Form Section -->
     <div class="contact-form-container" id="contactForm">
         <h2 class="contact-form-title">
             <i class="fas fa-paper-plane"></i> داواکاری
         </h2>
+        
+        <!-- GPS Status -->
+        <div class="gps-status loading" id="gpsStatus">
+            <span class="spinner"></span>
+            <span>چاوەڕوانی شوێنی GPS...</span>
+        </div>
+
         <form id="whatsappForm">
             <div class="form-group">
                 <label for="userName"><i class="fas fa-user"></i> ناو:</label>
@@ -404,16 +461,69 @@
 
         let appData = JSON.parse(localStorage.getItem('electricalAppData')) || defaultData;
 
+        // GPS Variables
+        let userLocation = null;
+        let locationError = null;
+
         function init() {
             renderNavButtons();
             showContent(0);
+            getLocation();
+        }
+
+        // Get GPS Location
+        function getLocation() {
+            const gpsStatus = document.getElementById('gpsStatus');
+            
+            if (!navigator.geolocation) {
+                gpsStatus.className = 'gps-status error';
+                gpsStatus.innerHTML = '<i class="fas fa-exclamation-triangle"></i><span>ئامێرەکەت GPS پشتگیری ناکات</span>';
+                locationError = 'GPS پشتگیری ناکات';
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    // Success
+                    userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    gpsStatus.className = 'gps-status success';
+                    gpsStatus.innerHTML = '<i class="fas fa-map-marker-alt"></i><span>شوێنەکەت بە سەرکەوتوویی وەرگیرا ✓</span>';
+                },
+                function(error) {
+                    // Error
+                    gpsStatus.className = 'gps-status error';
+                    let errorMsg = 'نەتوانرا شوێنەکەت وەربگیرێت';
+                    
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            errorMsg = 'ڕەتکردنەوەی مۆڵەتی شوێن - تکایە GPS بکەرەوە';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            errorMsg = 'زانیاری شوێن بەردەست نییە';
+                            break;
+                        case error.TIMEOUT:
+                            errorMsg = 'کاتی وەرگرتنی شوێن تەواو بوو';
+                            break;
+                    }
+                    
+                    gpsStatus.innerHTML = `<i class="fas fa-exclamation-triangle"></i><span>${errorMsg}</span>`;
+                    locationError = errorMsg;
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0
+                }
+            );
         }
 
         function renderNavButtons() {
             const container = document.getElementById('navContainer');
             container.innerHTML = '';
             
-            // Add 6 main buttons
             appData.forEach((item, index) => {
                 const btn = document.createElement('button');
                 btn.className = 'nav-btn';
@@ -426,13 +536,11 @@
                 container.appendChild(btn);
             });
 
-            // Add Request button
             const requestBtn = document.createElement('button');
             requestBtn.className = 'nav-btn request-btn';
             requestBtn.innerHTML = `<i class="fas fa-paper-plane"></i> داواکاری`;
             requestBtn.onclick = () => {
                 scrollToRequest();
-                // Remove active from other buttons
                 document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
                 requestBtn.classList.add('active');
             };
@@ -467,7 +575,7 @@
             requestForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // WhatsApp Form Submission
+        // WhatsApp Form Submission with GPS
         document.getElementById('whatsappForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -476,23 +584,25 @@
             const jobType = document.getElementById('jobType').value;
             const message = document.getElementById('userMessage').value;
 
-            // Format the message
-            const whatsappMessage = `*داواکاری نوێ*\n\n` +
+            // Build message
+            let whatsappMessage = `*داواکاری نوێ*\n\n` +
                                   `👤 *ناو:* ${name}\n` +
                                   `📱 *ژمارەی مۆبایل:* ${phone}\n` +
                                   `💼 *جۆری کار:* ${jobType}\n` +
                                   `📝 *وردەکاری:*\n${message}`;
 
-            // WhatsApp number: +964 750 175 7120
-            const whatsappNumber = '9647501757120';
+            // Add GPS location if available
+            if (userLocation) {
+                const mapsLink = `https://www.google.com/maps?q=${userLocation.lat},${userLocation.lng}`;
+                whatsappMessage += `\n\n📍 *شوێنی کڕیار:*\n${mapsLink}`;
+            } else if (locationError) {
+                whatsappMessage += `\n\n⚠️ *شوێن:* نەتوانرا شوێن وەربگیرێت (${locationError})`;
+            }
 
-            // Create WhatsApp URL
+            const whatsappNumber = '9647501757120';
             const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
-            // Open WhatsApp
             window.open(whatsappURL, '_blank');
-
-            // Reset form
             this.reset();
         });
 
