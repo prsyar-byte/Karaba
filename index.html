@@ -6,51 +6,57 @@
     <title>زانیاری کاره‌با - محمد مستەفا</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #4facfe;
-            --secondary: #00f2fe;
-            --dark: #2c3e50;
-            --glass: rgba(255, 255, 255, 0.9);
+        /* Smooth Scrolling for the whole page */
+        html {
+            scroll-behavior: smooth;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --dark: #2d3748;
+            --light: #f7fafc;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
 
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center everything horizontally */
+            color: var(--dark);
+            overflow-x: hidden;
         }
 
-        /* Header */
+        /* Header Styles */
         header {
-            width: 100%;
-            max-width: 1000px;
-            background: var(--glass);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            margin-top: 30px;
-            padding: 30px;
-            border-radius: 20px;
+            padding: 30px 20px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: slideDown 0.8s ease;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
         }
 
         h1 {
-            color: var(--dark);
             font-size: 2.2em;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 10px;
         }
 
         .owner-info {
             font-size: 1.1em;
-            color: #555;
+            color: #4a5568;
             margin-bottom: 15px;
         }
 
@@ -58,100 +64,90 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: #25D366;
+            background: var(--gradient);
             color: white;
             padding: 10px 25px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
-        .whatsapp-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
 
-        /* Navigation - Horizontal Row */
+        /* Navigation Buttons */
         .nav-container {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin: 30px 0;
-            width: 100%;
-            max-width: 1000px;
+            gap: 12px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: sticky; /* Makes nav stick to top when scrolling if needed, optional */
+            top: 0;
+            z-index: 5;
+            background: rgba(255,255,255,0.1); /* Slight background for visibility */
+            backdrop-filter: blur(5px);
         }
 
         .nav-btn {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             color: var(--dark);
             border: none;
-            padding: 15px 30px;
-            border-radius: 15px;
+            padding: 15px 25px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 1.1em;
+            font-size: 1em;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            min-width: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
-        .nav-btn::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            background: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
-
-        .nav-btn:hover { transform: translateY(-5px); }
-        .nav-btn:hover::after { transform: scaleX(1); }
 
         .nav-btn.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient);
             color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(79, 172, 254, 0.4);
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
         }
 
         /* Content Area */
         .content-area {
-            width: 100%;
             max-width: 900px;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
+            margin: 20px auto 40px;
+            background: rgba(255, 255, 255, 0.98);
             padding: 40px;
-            border-radius: 25px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            text-align: center;
-            margin-bottom: 50px;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            /* Important for scrolling target */
+            scroll-margin-top: 20px; 
         }
 
         .section-title {
-            font-size: 2em;
-            color: var(--dark);
+            font-size: 1.8em;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 25px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60%;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            margin: 10px auto 0;
-            border-radius: 2px;
+            text-align: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
         }
 
         .content-image {
@@ -161,66 +157,105 @@
             margin: 20px 0;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             display: none;
-            border: 5px solid white;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .content-text {
             line-height: 1.8;
-            font-size: 1.2em;
-            color: #444;
-            text-align: justify;
-            background: rgba(255,255,255,0.5);
+            font-size: 1.1em;
+            text-align: right;
+            white-space: pre-wrap;
+            color: #4a5568;
             padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-right: 4px solid var(--primary);
         }
 
         footer {
-            color: white;
-            padding: 20px;
             text-align: center;
+            padding: 20px;
+            color: white;
             font-size: 0.9em;
-            opacity: 0.8;
+            background: rgba(0,0,0,0.2);
         }
 
-        /* Responsive */
+        /* Mobile Optimization */
         @media (max-width: 768px) {
-            .nav-btn { width: 100%; }
-            header { margin: 15px; width: auto; }
-            .content-area { margin: 0 15px 30px; padding: 25px; }
+            h1 { font-size: 1.6em; }
+            
+            .nav-container {
+                gap: 8px;
+                padding: 15px 10px;
+            }
+
+            .nav-btn {
+                min-width: 45%; /* Two buttons per row on mobile */
+                padding: 12px 10px;
+                font-size: 0.9em;
+            }
+
+            .content-area {
+                margin: 15px;
+                padding: 25px 15px;
+            }
+
+            .section-title {
+                font-size: 1.4em;
+            }
+            
+            .whatsapp-btn {
+                width: 90%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1><i class="fas fa-bolt"></i> زانیاری کاره‌با</h1>
-        <div class="owner-info">خاوه‌نی مالپه‌ر: <strong>محمه‌د مسته‌فا</strong></div>
-        <a href="https://wa.me/9647738788343" class="whatsapp-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i> 07738788343
-        </a>
+    <header id="topHeader">
+        <div class="logo-container">
+            <h1><i class="fas fa-bolt"></i> زانیاری کاره‌با</h1>
+            <div class="owner-info">
+                <i class="fas fa-user-circle"></i> خاوه‌نی مالپه‌ر: <strong>محمه‌د مسته‌فا</strong>
+            </div>
+            <a href="https://wa.me/9647738788343" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                پەیوەندی کردن: 07738788343
+            </a>
+        </div>
     </header>
 
-    <nav class="nav-container" id="navContainer"></nav>
+    <nav class="nav-container" id="navContainer">
+        <!-- Buttons generated by JS -->
+    </nav>
 
-    <main class="content-area">
+    <!-- Added ID here for scrolling target -->
+    <main class="content-area" id="mainContent">
         <h2 id="displayTitle" class="section-title">بەخێربێیت</h2>
         <img id="displayImage" class="content-image" src="" alt="Section Image">
         <div id="displayText" class="content-text">
-            تکایە یەکێک لە دوگمەکانی سەرەوە هەڵبژێرە.
+            تکایە یەکێک لە دوگمەکانی سەرەوە هەڵبژێرە بۆ بینینی زانیاری.
         </div>
     </main>
 
-    <footer>&copy; 2026 Dzhwar Edres </footer>
+    <footer>
+        <p>&copy; 2026 Designed for Dzhwar Edres</p>
+    </footer>
 
     <script>
         const defaultData = [
-            { id: 0, title: "تەئسیسات", text: "زانیاری دەربارەی تەئسیسات...", img: "" },
-            { id: 1, title: "کلاسیک کۆنتڕۆڵ", text: "زانیاری دەربارەی کۆنتڕۆڵ...", img: "" },
-            { id: 2, title: "ماتۆر", text: "زانیاری دەربارەی ماتۆر...", img: "" },
-            { id: 3, title: "PLC", text: "زانیاری دەربارەی PLC...", img: "" },
-            { id: 4, title: "AC Drive", text: "زانیاری دەربارەی درایڤ...", img: "" },
-            { id: 5, title: "کێبڵ", text: "زانیاری دەربارەی کێبڵ...", img: "" }
+            { id: 0, title: "تەئسیسات", text: "زانیاری دەربارەی تەئسیساتی کارەبا...", img: "" },
+            { id: 1, title: "کلاسیک کۆنتڕۆڵ", text: "زانیاری دەربارەی کلاسیک کۆنتڕۆڵ...", img: "" },
+            { id: 2, title: "ماتۆر", text: "جۆرەکانی ماتۆر و شیکردنەوە...", img: "" },
+            { id: 3, title: "PLC", text: "بەرنامەسازی و سیستەمی PLC...", img: "" },
+            { id: 4, title: "AC Drive", text: "کۆنتڕۆڵی خێرایی ماتۆر بە درایڤ...", img: "" },
+            { id: 5, title: "کێبڵ", text: "جۆرەکانی کێبڵ و تواناکانیان...", img: "" }
         ];
 
         let appData = JSON.parse(localStorage.getItem('electricalAppData')) || defaultData;
@@ -236,8 +271,12 @@
             appData.forEach((item, index) => {
                 const btn = document.createElement('button');
                 btn.className = 'nav-btn';
-                btn.innerText = item.title;
-                btn.onclick = () => showContent(index);
+                btn.innerHTML = `<i class="fas fa-circle-dot"></i> ${item.title}`;
+                // Add click event to scroll
+                btn.onclick = () => {
+                    showContent(index);
+                    scrollToContent();
+                };
                 btn.id = `btn-${index}`;
                 container.appendChild(btn);
             });
@@ -249,15 +288,21 @@
 
             const item = appData[index];
             document.getElementById('displayTitle').innerText = item.title;
-            document.getElementById('displayText').innerText = item.text || "هیچ زانیارییەک نییە.";
+            document.getElementById('displayText').innerText = item.text ? item.text : "هیچ زانیارییەک نەنووسراوە.";
             
             const imgEl = document.getElementById('displayImage');
-            if (item.img && item.img.startsWith('data:image')) {
+            if (item.img && item.img.trim() !== "") {
                 imgEl.src = item.img;
                 imgEl.style.display = "block";
             } else {
                 imgEl.style.display = "none";
             }
+        }
+
+        // Function to scroll smoothly to content
+        function scrollToContent() {
+            const contentArea = document.getElementById('mainContent');
+            contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         init();
