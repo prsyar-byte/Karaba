@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>زانیاری کاره‌با - محمد مستەفا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4facfe;
+            --secondary: #00f2fe;
+            --dark: #2c3e50;
+            --glass: rgba(255, 255, 255, 0.9);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center everything horizontally */
+        }
+
+        /* Header */
+        header {
+            width: 100%;
+            max-width: 1000px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            margin-top: 30px;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        h1 {
+            color: var(--dark);
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .owner-info {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .whatsapp-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
+
+        /* Navigation - Horizontal Row */
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .nav-btn {
+            background: white;
+            color: var(--dark);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-btn:hover { transform: translateY(-5px); }
+        .nav-btn:hover::after { transform: scaleX(1); }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(79, 172, 254, 0.4);
+        }
+
+        /* Content Area */
+        .content-area {
+            width: 100%;
+            max-width: 900px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: var(--dark);
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .content-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: none;
+            border: 5px solid white;
+        }
+
+        .content-text {
+            line-height: 1.8;
+            font-size: 1.2em;
+            color: #444;
+            text-align: justify;
+            background: rgba(255,255,255,0.5);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        footer {
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-btn { width: 100%; }
+            header { margin: 15px; width: auto; }
+            .content-area { margin: 0 15px 30px; padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fas fa-bolt"></i> زانیاری کاره‌با</h1>
+        <div class="owner-info">خاوه‌نی مالپه‌ر: <strong>محمه‌د مسته‌فا</strong></div>
+        <a href="https://wa.me/9647738788343" class="whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i> 07738788343
+        </a>
+    </header>
+
+    <nav class="nav-container" id="navContainer"></nav>
+
+    <main class="content-area">
+        <h2 id="displayTitle" class="section-title">بەخێربێیت</h2>
+        <img id="displayImage" class="content-image" src="" alt="Section Image">
+        <div id="displayText" class="content-text">
+            تکایە یەکێک لە دوگمەکانی سەرەوە هەڵبژێرە.
+        </div>
+    </main>
+
+    <footer>&copy; 2026 Dzhwar Edres </footer>
+
+    <script>
+        const defaultData = [
+            { id: 0, title: "تەئسیسات", text: "زانیاری دەربارەی تەئسیسات...", img: "" },
+            { id: 1, title: "کلاسیک کۆنتڕۆڵ", text: "زانیاری دەربارەی کۆنتڕۆڵ...", img: "" },
+            { id: 2, title: "ماتۆر", text: "زانیاری دەربارەی ماتۆر...", img: "" },
+            { id: 3, title: "PLC", text: "زانیاری دەربارەی PLC...", img: "" },
+            { id: 4, title: "AC Drive", text: "زانیاری دەربارەی درایڤ...", img: "" },
+            { id: 5, title: "کێبڵ", text: "زانیاری دەربارەی کێبڵ...", img: "" }
+        ];
+
+        let appData = JSON.parse(localStorage.getItem('electricalAppData')) || defaultData;
+
+        function init() {
+            renderNavButtons();
+            showContent(0);
+        }
+
+        function renderNavButtons() {
+            const container = document.getElementById('navContainer');
+            container.innerHTML = '';
+            appData.forEach((item, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'nav-btn';
+                btn.innerText = item.title;
+                btn.onclick = () => showContent(index);
+                btn.id = `btn-${index}`;
+                container.appendChild(btn);
+            });
+        }
+
+        function showContent(index) {
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`btn-${index}`).classList.add('active');
+
+            const item = appData[index];
+            document.getElementById('displayTitle').innerText = item.title;
+            document.getElementById('displayText').innerText = item.text || "هیچ زانیارییەک نییە.";
+            
+            const imgEl = document.getElementById('displayImage');
+            if (item.img && item.img.startsWith('data:image')) {
+                imgEl.src = item.img;
+                imgEl.style.display = "block";
+            } else {
+                imgEl.style.display = "none";
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>
