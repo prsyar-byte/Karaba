@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پانێڵی بەڕێوەبردن</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        
+        body {
+            background: #f0f2f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #4facfe;
+            margin-bottom: 30px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #666;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .form-group {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+        }
+
+        .form-group h3 {
+            color: #333;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #4facfe;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        /* File Upload Styling */
+        .file-upload-wrapper {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: white;
+            border: 2px dashed #4facfe;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .preview-img {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: none;
+            border: 2px solid #ddd;
+        }
+
+        .save-btn {
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            width: 100%;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .save-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .alert {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> گەڕانەوە بۆ ماڵپەڕ</a>
+        <h1>⚙️ دەستکاری زانیارییەکان</h1>
+        
+        <div class="alert" id="successAlert">سەرکەوتووانە پاشکە کرا!</div>
+
+        <div id="adminForms"></div>
+
+        <button class="save-btn" onclick="saveData()">💾 پاشکەکردنی هەموو گۆڕانکارییەکان</button>
+    </div>
+
+    <script>
+        const defaultData = [
+            { id: 0, title: "تەئسیسات", text: "", img: "" },
+            { id: 1, title: "کلاسیک کۆنتڕۆڵ", text: "", img: "" },
+            { id: 2, title: "ماتۆر", text: "", img: "" },
+            { id: 3, title: "PLC", text: "", img: "" },
+            { id: 4, title: "AC Drive", text: "", img: "" },
+            { id: 5, title: "کێبڵ", text: "", img: "" }
+        ];
+
+        let appData = JSON.parse(localStorage.getItem('electricalAppData')) || defaultData;
+
+        function init() {
+            renderAdminForms();
+        }
+
+        function renderAdminForms() {
+            const container = document.getElementById('adminForms');
+            container.innerHTML = '';
+
+            appData.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'form-group';
+                
+                // Check if image exists for preview
+                let imgPreviewStyle = item.img ? `display:block; src="${item.img}"` : `display:none`;
+
+                div.innerHTML = `
+                    <h3>بخشی ${index + 1}: ${item.title}</h3>
+                    
+                    <label>ناوی دوگمە:</label>
+                    <input type="text" id="title-${index}" value="${item.title}">
+                    
+                    <label>هەڵبژاردنی وێنە لە گەلەری:</label>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="file-${index}" accept="image/*" onchange="previewImage(this, ${index})">
+                        <img id="preview-${index}" class="preview-img" style="${imgPreviewStyle}">
+                    </div>
+                    
+                    <label>زانیاری / دەق:</label>
+                    <textarea id="text-${index}" rows="4">${item.text}</textarea>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Function to convert image to Base64 and show preview
+        function previewImage(input, index) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const preview = document.getElementById(`preview-${index}`);
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    
+                    // Temporarily store base64 in a data attribute until save
+                    input.dataset.base64 = e.target.result;
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function saveData() {
+            appData.forEach((item, index) => {
+                // Update Title
+                item.title = document.getElementById(`title-${index}`).value;
+                
+                // Update Text
+                item.text = document.getElementById(`text-${index}`).value;
+                
+                // Update Image if a new one was selected
+                const fileInput = document.getElementById(`file-${index}`);
+                if (fileInput.dataset.base64) {
+                    item.img = fileInput.dataset.base64;
+                }
+            });
+
+            try {
+                localStorage.setItem('electricalAppData', JSON.stringify(appData));
+                const alert = document.getElementById('successAlert');
+                alert.style.display = 'block';
+                setTimeout(() => alert.style.display = 'none', 3000);
+            } catch (e) {
+                alert("تێبینی: وێنەکە زۆر گەورەیە و ناتوانرێت پاشکە بکرێت. تکایە وێنەیەکی بچووکتر هەڵبژێرە.");
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>
